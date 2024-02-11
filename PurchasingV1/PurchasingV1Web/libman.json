@@ -1,0 +1,19 @@
+{
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "name": "jquery",
+      "version": "3.6.0"
+    },
+    {
+      "name": "bootstrap",
+      "version": "4.6.1"
+    },
+    {
+      "name": "font-awesome",
+      "version": "5.15.4",
+      "provider": "fontawesome"
+    }
+  ],
+  "version": "1.0"
+}

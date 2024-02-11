@@ -1,0 +1,71 @@
+﻿
+@page "/Arama"
+@model IEnumerable<PurchasingV1Web.Models.Islem>
+
+@using (Html.BeginForm("GetIslemByBarkod", "Arama", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="input-group">
+        <input type="text" name="barkod" placeholder="Barkod Numarası Girin" class="form-control" />
+        <button type="submit" class="btn btn-primary">Ara</button>
+    </div>
+}
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>S</th>
+                <th>Barkod</th>
+                <th>Konu</th>
+                <th>Talep Tarihi</th>
+                <th>Durum</th>
+                <th>Açıklama</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.S</td>
+                    <td>@item.Barkod</td>
+                    <td>@item.Konu</td>
+                    <td>@item.TalepTarihi.ToString("dd.MM.yyyy")</td>
+                    <td>@item.Durum</td>
+                    <td>@item.Aciklama</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="alert alert-warning">Barkod numarasına ait kayıt bulunamadı.</p>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#aramaForm").submit(function (e) {
+                e.preventDefault();
+
+                var barkod = $("#barkod").val();
+
+                $.ajax({
+                    url: "/Arama/GetIslemByBarkod",
+                    data: { barkod: barkod },
+                    success: function (data) {
+                        if (data.success) {
+                            // Arama sonuçlarını Model'e aktarın ve sayfayı yeniden yükleyin.
+                            window.location.href = "/Arama?barkod=" + barkod;
+                        } else {
+                            // Hata mesajını gösterin.
+                            alert(data.message);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

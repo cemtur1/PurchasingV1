@@ -1,0 +1,92 @@
+/* Sýfýrlama stili (örnek: Normalize.css kullanýn) */
+@import url('normalize.css');
+
+/* Temel stiller */
+html {
+    font-size: 62.5%; /* 10px taban yazý tipi boyutu */
+    position: relative;
+    min-height: 100vh;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif; /* Temel yazý tipi ailesi */
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Düðme odak stili (daha özel seçici) */
+.btn:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    outline: none; /* Varsayýlan anahattý kaldýrýn */
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.15); /* Gölgeyi özelleþtirin */
+}
+
+/* Özgüllük: Daha yüksek özgüllükten kaçýnmak için daha spesifik seçiciler kullanýn */
+.container { /* Örnek bir seçici */
+    padding: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* Responsive Tasarým: Medya sorgularýný daha spesifik ihtiyaçlarýnýza göre ayarlayýn */
+@media (min-width: 768px) {
+    html {
+        font-size: 75%; /* Örnek: Baþlýklarý küçültün */
+    }
+
+    .container {
+        max-width: 1200px;
+    }
+}
+
+/* Renk Paleti: Tutarlýlýk için renk tanýmlarý ekleyin */
+:root {
+    --primary-color: #258cfb;
+    --secondary-color: #f0f0f0;
+}
+
+/* Tipografi: Yazý tipi ailelerini ve boyutlarýný tanýmlayýn */
+h1 {
+    font-family: serif;
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+h2 {
+    font-family: serif;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Performans: Görüntü boyutlarýný optimize edin, HTTP isteklerini azaltýn */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Diðer stilleriniz bu þekilde eklenebilir... */
+
+/* Örnek: Sayfa baþlýðý */
+.header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Örnek: Ana içerik alaný */
+.main {
+    padding: 20px;
+}
+
+/* Örnek: Ayakbilgisi */
+.footer {
+    background-color: var(--secondary-color);
+    text-align: center;
+    padding: 10px;
+}

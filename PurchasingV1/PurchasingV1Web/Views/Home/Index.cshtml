@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section>
+    <h2>Barkod Arama</h2>
+    <form id="barcode-search-form">
+        <input type="text" placeholder="Barkod Giriniz" id="barcode-input" name="barkod">
+        <button type="submit">Ara</button>
+    </form>
+
+    <div id="search-results"></div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        $("#barcode-search-form").submit(function (e) {
+            e.preventDefault();
+
+            var barkod = $("#barcode-input").val();
+
+            // Barkod doğrulama
+            if (barkod === "") {
+                alert("Barkod boş olamaz!");
+                return;
+            }
+
+            if (!/^[a-zA-Z0-9]+$/.test(barkod)) {
+                alert("Barkod sadece sayı ve harflerden oluşabilir!");
+                return;
+            }
+
+            if (barkod.length !== 13) {
+                alert("Barkod 13 karakter uzunluğunda olmalı!");
+                return;
+            }
+
+            // Arama fonksiyonu
+            $.ajax({
+                url: "/Islem/Ara",
+                data: { barkod: barkod },
+                method: "POST",
+                success: function (data) {
+                    // Arama sonucunu #search-results div'ine ekleyin
+                    $("#search-results").html(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Bir hata oluştu!");
+                }
+            });
+        });
+    });
+</script>
